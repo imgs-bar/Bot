@@ -9,6 +9,6 @@ export default class GuildCreateEvent extends BaseEvent {
     }
 
     async run(guild: Guild) {
-        if (guild.id !== '797483366634750063') await guild.leave();
+        if (guild.id !== '843947554014363658') await guild.leave();
     }
 }

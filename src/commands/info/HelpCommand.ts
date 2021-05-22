@@ -14,7 +14,8 @@ export default class HelpCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, args: Array<string>) {
         const commands = this.client.commands;
-        const categories = [];
+        let categories: any[];
+        categories = [];
 
         commands.forEach((cmd) => {
             if (!categories.find((x) => x.name === cmd.category)) categories.push({
@@ -29,7 +30,8 @@ export default class HelpCommand extends BaseCommand {
         const embed = new Embed();
 
         if (category) {
-            const categoryCommands = [];
+            let categoryCommands: any[];
+            categoryCommands = [];
 
             commands.forEach((cmd) => {
                 if (cmd.category === args[0] && this.hasPermission(cmd, message)) categoryCommands.push({
@@ -74,7 +76,7 @@ export default class HelpCommand extends BaseCommand {
     }
     hasPermission(command: BaseCommand, message: Message): boolean {
         for (const permission of command.permissions) {
-            if (!message.member.permissions.has(permission)) return false;
+            if (!message.member!!.permissions.has(permission)) return false;
         }
 
         return true;

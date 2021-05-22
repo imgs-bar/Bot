@@ -3,8 +3,8 @@ import { Error } from '../utils/Embeds';
 import BaseCommand from '../utils/structures/BaseCommand';
 import BaseEvent from '../utils/structures/BaseEvent';
 
-const ignoredChannels = process.env.IGNORED_CHANNELS.split(' ');
-const owners = process.env.OWNERS.split(' ');
+const ignoredChannels = process.env.IGNORED_CHANNELS?.split(' ');
+const owners = process.env.OWNERS?.split(' ');
 
 export default class MessageCreateEvent extends BaseEvent {
     constructor() {
@@ -21,7 +21,7 @@ export default class MessageCreateEvent extends BaseEvent {
      */
     hasPermission(command: BaseCommand, message: Message): boolean {
         for (const permission of command.permissions) {
-            if (!message.member.permissions.has(permission)) return false;
+            if (!message.member?.permissions.has(permission)) return false;
         }
 
         return true;
@@ -32,19 +32,16 @@ export default class MessageCreateEvent extends BaseEvent {
 
         const prefix = process.env.PREFIX;
         try {
-            if (message.channel.id === '799622023323975741' && !message.content.toLowerCase().startsWith('%suggest')) {
-                return void await message.delete();
-            }
-            if ((ignoredChannels.includes(message.channel.id) && !owners.includes(message.author.id)) || !message.content.startsWith(prefix)) return;
-            const args = message.content.slice(prefix.length).trim().split(/ +/g);
-            const name = args.shift().toLowerCase();
-            const command: BaseCommand = this.client.commands.get(name);
+            if ((ignoredChannels?.includes(message.channel.id) && !owners?.includes(message.author.id)) || !message.content.startsWith(prefix!!)) return;
+            const args = message.content.slice(prefix?.length).trim().split(/ +/g);
+            const name = args.shift()?.toLowerCase();
+            const command: BaseCommand = this.client.commands.get(name!!)!!;
 
             if (!command || (message.channel.type === 0 && !this.hasPermission(command, message))) return;
 
             return command.run(message, args);
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }
