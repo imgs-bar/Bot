@@ -101,3 +101,5 @@ dist
 
 # rly aspect?
 build
+
+.env
