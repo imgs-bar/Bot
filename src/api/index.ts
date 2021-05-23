@@ -1,4 +1,4 @@
-import { HTTPMethod } from '@helperdiscord/centra/dist/lib/CentraRequest';
+import {HTTPMethod} from '@helperdiscord/centra/dist/lib/CentraRequest';
 import req from '@helperdiscord/centra';
 
 /**
@@ -88,12 +88,10 @@ export default class API {
      * Get all of the server's statistics.
      */
     async getTotalStats() {
-        const stats = (await this.request({
-            endpoint: '/stats',
+        return (await this.request({
+            endpoint: '/stats/',
             method: 'GET',
-        }));
-
-        return stats
+        }))
     }
 
     /**

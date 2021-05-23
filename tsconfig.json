@@ -1,12 +1,27 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "module": "CommonJS",
+    "target": "es2018",
     "outDir": "build",
-    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ESNext",
+      "ESNext.Array",
+      "ESNext.AsyncIterable",
+      "ESNext.Intl",
+      "ESNext.Symbol",
+      "DOM"
+    ],
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "strictNullChecks": false,
-    "noImplicitReturns": false
+    "skipLibCheck": true,
+    "noImplicitReturns": false,
+    "strictNullChecks": false
   },
   "include": [
     "src/**/*.ts",

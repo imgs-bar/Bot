@@ -70,7 +70,9 @@ export default class ReadyEvent extends BaseEvent {
             setTimeout(async () => {
                 await this.changeStatus();
             }, 300000);
-        } catch (err) {}
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     randomInteger(min: number, max: number) {
