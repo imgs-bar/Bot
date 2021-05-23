@@ -6,7 +6,7 @@ export default class StatsCommand extends BaseCommand {
     constructor() {
         super({
             name: 'stats',
-            description: 'Get Higure\'s statistics.',
+            description: 'Get imgs.bar\'s statistics.',
             usage: 'stats',
             permissions: ['sendMessages'],
         });
@@ -14,13 +14,13 @@ export default class StatsCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, _args: Array<string>) {
         try {
-            const { totalFiles, totalUsers, totalBans, premium, storageUsed, count } = await this.client.api.getTotalStats();
+            const { totalFiles, users, blacklists, premium, storageUsed, domains } = await this.client.api.getTotalStats();
             const embed = new Embed()
                 .setTitle('Total Stats')
                 .addFields([
                     {
                         name: 'Users',
-                        value: `\`${totalUsers}\``,
+                        value: `\`${users}\``,
                         inline: true,
                     },
                     {
@@ -30,7 +30,7 @@ export default class StatsCommand extends BaseCommand {
                     },
                     {
                         name: 'Blacklists',
-                        value: `\`${totalBans}\``,
+                        value: `\`${blacklists}\``,
                         inline: true,
                     },
                     {
@@ -39,22 +39,22 @@ export default class StatsCommand extends BaseCommand {
                         inline: true,
                     },
                     {
-                        name: 'Total Storage Used',
+                        name: 'Storage Used',
                         value: `\`${storageUsed}\``,
                         inline: true,
                     },
                     {
                         name: 'Domains',
-                        value: `\`${count}\``,
+                        value: `\`${domains}\``,
                         inline: true,
                     },
                 ]);
 
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: embed.embed,
             });
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }

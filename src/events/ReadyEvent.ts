@@ -13,12 +13,12 @@ export default class ReadyEvent extends BaseEvent {
      */
     async changeStatus() {
         try {
-            const { totalFiles, totalUsers, storageUsed, count } = await this.client.api.getTotalStats();
-            const members = this.client.guilds.get('843947554014363658')?.memberCount;
+            const { totalFiles, users, storageUsed, domains } = await this.client.api.getTotalStats();
+            const members = this.client.guilds.get('823952393808642088')?.memberCount;
             const random = this.randomInteger(1, 4);
             if (random == 1) {
                 this.client.editStatus('dnd', {
-                    name: `${totalUsers.toLocaleString()} users.`,
+                    name: `${users.toLocaleString()} users.`,
                     type: 2,
                 });
             } else if (random == 2) {
@@ -28,43 +28,43 @@ export default class ReadyEvent extends BaseEvent {
                 });
             } else if (random == 3) {
                 this.client.editStatus('dnd', {
-                    name: `over ${totalFiles.toLocaleString()} files.`,
+                    name: `over ${storageUsed}.`,
                     type: 3,
                 });
             } else {
                 this.client.editStatus('dnd', {
-                    name: `${count.toLocaleString()} domains.`,
+                    name: `${domains.toLocaleString()} domains.`,
                     type: 2,
                 });
             }
-            if ((this.client.getChannel('845705756934144010') as VoiceChannel).name != 'Members: ' + members) {
-                await this.client.editChannel('845705756934144010', {
+            if ((this.client.getChannel('843887915716050944') as VoiceChannel).name != 'Members: ' + members) {
+                await this.client.editChannel('843887915716050944', {
                     name: 'Members: ' + members?.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
-            if ((this.client.getChannel('845705878392012800') as VoiceChannel).name != 'Users: ' + totalUsers) {
-                await this.client.editChannel('845705878392012800', {
-                    name: 'Users: ' + totalUsers.toLocaleString(),
+            if ((this.client.getChannel('843887918618509323') as VoiceChannel).name != 'Users: ' + users) {
+                await this.client.editChannel('843887918618509323', {
+                    name: 'Users: ' + users.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
-            if ((this.client.getChannel('845705893173788672') as VoiceChannel).name != 'Files: ' + totalFiles) {
-                await this.client.editChannel('845705893173788672', {
+            if ((this.client.getChannel('843887921873420309') as VoiceChannel).name != 'Files: ' + totalFiles) {
+                await this.client.editChannel('843887921873420309', {
                     name: 'Files: ' + totalFiles.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
-            if ((this.client.getChannel('845705947644035073') as VoiceChannel).name != 'Storage Used: ' + storageUsed) {
-                await this.client.editChannel('845705947644035073', {
+            if ((this.client.getChannel('845968466086985768') as VoiceChannel).name != 'Storage Used: ' + storageUsed) {
+                await this.client.editChannel('845968466086985768', {
                     name: 'Storage Used: ' + storageUsed.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
-            if ((this.client.getChannel('845705968809803818') as VoiceChannel).name != 'Domains: ' + count) {
-                await this.client.editChannel('845705968809803818', {
-                    name: 'Domains: ' + count.toLocaleString(),
+            if ((this.client.getChannel('845968481568555030') as VoiceChannel).name != 'Domains: ' + domains) {
+                await this.client.editChannel('845968481568555030', {
+                    name: 'Domains: ' + domains.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
-            if ((this.client.getChannel('845705986383020065') as VoiceChannel).name != 'Boosts: ' + this.client.guilds.get('843947554014363658')?.premiumSubscriptionCount?.toLocaleString()) {
-                await this.client.editChannel('845705986383020065', {
-                    name: 'Boosts: ' + this.client.guilds.get('843947554014363658')?.premiumSubscriptionCount?.toLocaleString(),
+            if ((this.client.getChannel('845968503285612545') as VoiceChannel).name != 'Boosts: ' + this.client.guilds.get('823952393808642088')?.premiumSubscriptionCount?.toLocaleString()) {
+                await this.client.editChannel('845968503285612545', {
+                    name: 'Boosts: ' + this.client.guilds.get('823952393808642088')?.premiumSubscriptionCount?.toLocaleString(),
                 }).catch((e) => console.log(e));
             }
             setTimeout(async () => {

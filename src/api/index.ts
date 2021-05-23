@@ -57,7 +57,7 @@ export default class API {
      */
     async deleteImage(filename: string) {
         return await this.request({
-            endpoint: `/admin/files/${filename}`,
+            endpoint: `/bot/files/${filename}`,
             method: 'DELETE',
         });
     }
@@ -89,27 +89,11 @@ export default class API {
      */
     async getTotalStats() {
         const stats = (await this.request({
-            endpoint: '/users',
+            endpoint: '/stats',
             method: 'GET',
         }));
-        const totalUsers = stats.total;
-        const totalBans = stats.blacklisted;
-        const premium = stats.premium;
-        const filestats = (await this.getFileStats());
-        const totalFiles = filestats.total;
-        const storageUsed = filestats.storageUsed;
-        const { count } = (await this.request({
-            endpoint: '/domains',
-            method: 'GET',
-        }));
-        return {
-            totalUsers,
-            totalFiles,
-            totalBans,
-            premium,
-            storageUsed,
-            count,
-        };
+
+        return stats
     }
 
     /**
@@ -118,7 +102,7 @@ export default class API {
      */
     async generateInvite(executor : string) {
         return await this.request({
-            endpoint: '/admin/invites',
+            endpoint: '/bot/invites',
             method: 'POST',
             body: {
                 executerId: executor,
@@ -126,20 +110,6 @@ export default class API {
         });
     }
 
-    /**
-    * @param {string} executor The user responsible
-    * @param {number} count of invites to create
-    */
-    async generateBulkInvites(executor : string, count: number) {
-        return await this.request({
-            endpoint: '/admin/bulkinvites',
-            method: 'POST',
-            body: {
-                executerId: executor,
-                count: count,
-            },
-        });
-    }
 
 
     /**
@@ -150,7 +120,7 @@ export default class API {
      */
     async blacklist(id: string, reason: string, executor: string) {
         return await this.request({
-            endpoint: '/admin/blacklist',
+            endpoint: '/bot/blacklist',
             method: 'POST',
             body: {
                 id,
@@ -162,17 +132,7 @@ export default class API {
 
     async premium(id: string) {
         return await this.request({
-            endpoint: '/admin/premium',
-            method: 'POST',
-            body: {
-                id,
-            },
-        });
-    }
-
-    async verifyemail(id: string) {
-        return await this.request({
-            endpoint: '/admin/verifyemail',
+            endpoint: '/bot/premium',
             method: 'POST',
             body: {
                 id,
@@ -182,7 +142,7 @@ export default class API {
 
     async wipeuser(id: string) {
         return await this.request({
-            endpoint: '/admin/wipeuser',
+            endpoint: '/bot/wipeuser',
             method: 'POST',
             body: {
                 id,
@@ -191,7 +151,7 @@ export default class API {
     }
     async wipeFiles(id: string) {
         return await this.request({
-            endpoint: '/admin/wipefiles',
+            endpoint: '/bot/wipefiles',
             method: 'POST',
             body: {
                 id,
@@ -200,7 +160,7 @@ export default class API {
     }
     async setMotd(motd: string) {
         return await this.request({
-            endpoint: '/admin/setmotd',
+            endpoint: '/bot/setmotd',
             method: 'POST',
             body: {
                 motd,
@@ -210,7 +170,7 @@ export default class API {
 
     async unblacklist(id: string, reason: string, executer : string) {
         return await this.request({
-            endpoint: '/admin/unblacklist',
+            endpoint: '/bot/unblacklist',
             method: 'POST',
             body: {
                 id,
@@ -222,7 +182,7 @@ export default class API {
 
     async giveinv(id: string, amount: number) {
         return await this.request({
-            endpoint: '/admin/inviteadd',
+            endpoint: '/bot/inviteadd',
             method: 'POST',
             body: {
                 id,
@@ -233,7 +193,7 @@ export default class API {
 
     async setuid(id: string, newuid: number) {
         return await this.request({
-            endpoint: '/admin/setuid',
+            endpoint: '/bot/setuid',
             method: 'POST',
             body: {
                 id,
@@ -244,7 +204,7 @@ export default class API {
 
     async invWave(amount: number) {
         return await this.request({
-            endpoint: '/admin/invitewave',
+            endpoint: '/bot/invitewave',
             method: 'POST',
             body: {
                 amount: amount,
@@ -266,7 +226,18 @@ export default class API {
      */
     async getUsers(id: string) {
 		return await this.request({
-            endpoint: `/admin/users/${id}`,
+            endpoint: `/bot/users/${id}`,
+            method: 'GET',
+        });
+    }
+
+    /**
+     * tell api to readd user's roles.
+     * @param {string} id The member's id.
+     */
+    async addRoles(id: string) {
+        return await this.request({
+            endpoint: `/bot/roles/${id}`,
             method: 'GET',
         });
     }

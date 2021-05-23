@@ -20,7 +20,7 @@ export default class LookupCommand extends BaseCommand {
             const { users } = await this.client.api.getUsers(message.mentions[0] ? message.mentions[0] .id : args[0]);
             for (const user of users) {
                 const embed = new Embed()
-                    .setDescription(`UID ${user.uid} | [${user.username}](https://higure.wtf/u/${user.uid}) (${user.blacklisted.status ? "Blacklisted" : ( this.client.owners.includes(user.discord.id) ? "Owner" :  (user.admin ? 'Admin' : (user.premium ? 'Premium' : 'Whitelisted')))})`)
+                    .setDescription(`UID ${user.uid} | ${user.username} (${user.blacklisted.status ? "Blacklisted" : ( this.client.owners.includes(user.discord.id) ? "Owner" :  (user.admin ? 'Admin' : (user.premium ? 'Premium' : 'Whitelisted')))})`)
                     .setThumbnail({url: user.avatar})
                     .setFooter({
                         text: `UUID ${user._id} | Invited by ${user.invitedBy}`,
@@ -37,7 +37,7 @@ export default class LookupCommand extends BaseCommand {
                             inline: true,
                         },
                         {
-                            name: 'Invites',
+                            name: 'Invited users:',
                             value: user.invitedUsers[0] ? `\`\`\`${user.invitedUsers.join(', ')}\`\`\`` : 'None',
                             inline: false,
                         },

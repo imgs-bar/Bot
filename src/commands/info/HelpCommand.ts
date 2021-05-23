@@ -47,8 +47,8 @@ export default class HelpCommand extends BaseCommand {
             message.channel.createMessage({
                 embed: embed.embed,
             });
-        } else if (!command) {
-            embed.setTitle('Help and Information')
+        } else if (!command || !this.hasPermission(command, message)) {
+            embed.setTitle('Help command')
                 .setDescription(`You can view specific commands by doing \`${process.env.PREFIX}help <category>\``)
                 .addFields(categories);
 
@@ -63,10 +63,6 @@ export default class HelpCommand extends BaseCommand {
                         name: 'Usage',
                         value: `${process.env.PREFIX}${command.usage}`,
                     },
-                    {
-                        name: 'Permissions',
-                        value: `\`${command.permissions.join(', ')}\``,
-                    },
                 ]);
 
             message.channel.createMessage({
@@ -78,7 +74,6 @@ export default class HelpCommand extends BaseCommand {
         for (const permission of command.permissions) {
             if (!message.member!!.permissions.has(permission)) return false;
         }
-
         return true;
     }
 }
