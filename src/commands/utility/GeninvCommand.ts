@@ -13,7 +13,6 @@ export default class GeninvCommand extends BaseCommand {
     }
 
     async run(message: Message<TextChannel>, args: Array<string>) {
-        if (!message.member.roles.includes(process.env.ADMIN_ROLE)) return;
         try {
             if (message.mentions[0]) {
                 const dms = await message.mentions[0].getDMChannel();
