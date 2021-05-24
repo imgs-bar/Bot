@@ -69,7 +69,7 @@ export default class ReadyEvent extends BaseEvent {
             }
             setTimeout(async () => {
                 await this.changeStatus();
-            }, 300000);
+            }, 10000);
         } catch (err) {
             console.log(err)
         }
