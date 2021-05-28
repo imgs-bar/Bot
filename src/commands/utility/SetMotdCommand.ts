@@ -13,7 +13,8 @@ export default class SetMotdCommand extends BaseCommand {
     }
 
     async run(message: Message<TextChannel>, args: Array<string>) {
-        if (!message.member.roles.includes("motd")) return;
+        if (!message.member.roles.includes("847801835842043925")) return;
+
         if (!args[0]) return message.channel.createMessage({
             embed: Error('Provide a new MOTD.'),
         });
