@@ -6,14 +6,14 @@ export default class SetMotdCommand extends BaseCommand {
     constructor() {
         super({
             name: 'setmotd',
-            description: 'Set a MOTD.',
+            description: 'Set a MOTD. ( need motd role )',
             usage: 'setmotd newmotd',
             permissions: ['sendMessages', 'administrator'],
         });
     }
 
     async run(message: Message<TextChannel>, args: Array<string>) {
-        if (!this.client.owners.includes(message.author.id)) return;
+        if (!message.member.roles.includes("motd")) return;
         if (!args[0]) return message.channel.createMessage({
             embed: Error('Provide a new MOTD.'),
         });
