@@ -8,7 +8,7 @@ export default class SetMotdCommand extends BaseCommand {
             name: 'setmotd',
             description: 'Set a MOTD. ( need motd role )',
             usage: 'setmotd newmotd',
-            permissions: ['sendMessages', 'administrator'],
+            permissions: ['sendMessages'],
         });
     }
 
