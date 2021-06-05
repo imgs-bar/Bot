@@ -8,7 +8,7 @@ export default class AddDomainCommand extends BaseCommand {
             name: 'adddomains',
             description: 'Add multiple domains',
             usage: 'adddomain domain1 domain2',
-            permissions: ['sendMessages']
+            permissions: ['sendMessages'],
         });
     }
 
