@@ -8,11 +8,13 @@ export default class AddinviteCommand extends BaseCommand {
             name: 'giveinvites',
             description: 'Give a user an invite',
             usage: 'giveinvites (<uuid/uid/discord>) amount',
-            permissions: ['sendMessages', 'administrator'],
+            permissions: ['sendMessages'],
         });
     }
 
     async run(message: Message<TextChannel>, args: Array<string>) {
+        if (!message.member.roles.includes("850536478214717440")) return;
+
         if (!this.client.owners.includes(message.author.id)) return;
         if (!args[0] && !message.mentions[0]) return message.channel.createMessage({
             embed: Error('Provide an identifier.'),
