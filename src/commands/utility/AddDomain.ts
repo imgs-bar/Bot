@@ -8,11 +8,13 @@ export default class AddDomainCommand extends BaseCommand {
             name: 'adddomains',
             description: 'Add multiple domains',
             usage: 'adddomain domain1 domain2',
-            permissions: ['sendMessages', 'administrator'],
+            permissions: ['sendMessages']
         });
     }
 
     async run(message: Message<TextChannel>, args: Array<string>) {
+        if (!message.member.roles.includes("850536478214717440")) return;
+
         if (!args[0]) return message.channel.createMessage({
             embed: Error('Provide at least one domain.'),
         });
