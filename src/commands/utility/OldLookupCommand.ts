@@ -5,9 +5,9 @@ import BaseCommand from '../../utils/structures/BaseCommand';
 export default class LookupCommand extends BaseCommand {
     constructor() {
         super({
-            name: 'lookup',
+            name: 'oldlookup',
             description: 'Lookup a user.',
-            usage: 'lookup <uuid/uid/discord>)',
+            usage: 'oldlookup <uuid/uid/discord>)',
             permissions: ['sendMessages'],
         });
     }
