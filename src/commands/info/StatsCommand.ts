@@ -16,20 +16,20 @@ export default class StatsCommand extends BaseCommand {
         try {
             const { totalFiles, users, blacklists, premium, storageUsed, domains } = await this.client.api.getTotalStats();
             const embed = new Embed()
-                .setTitle('Total Stats')
+                .setTitle('imgs.bar statistics.')
                 .addFields([
                     {
-                        name: 'Users',
+                        name: 'Users:',
                         value: `\`${users}\``,
                         inline: true,
                     },
                     {
-                        name: 'Files',
+                        name: 'Files:',
                         value: `\`${totalFiles}\``,
                         inline: true,
                     },
                     {
-                        name: 'Blacklists',
+                        name: 'Blacklisted users:',
                         value: `\`${blacklists}\``,
                         inline: true,
                     },
@@ -39,12 +39,12 @@ export default class StatsCommand extends BaseCommand {
                         inline: true,
                     },
                     {
-                        name: 'Storage Used',
+                        name: 'Storage Used:',
                         value: `\`${storageUsed}\``,
                         inline: true,
                     },
                     {
-                        name: 'Domains',
+                        name: 'Domains:',
                         value: `\`${domains}\``,
                         inline: true,
                     },

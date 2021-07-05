@@ -15,15 +15,15 @@ export default class AddinviteCommand extends BaseCommand {
     async run(message: Message<TextChannel>, args: Array<string>) {
         if (!message.member.roles.includes("850536478214717440")) return;
 
-        if (!this.client.owners.includes(message.author.id)) return;
         if (!args[0] && !message.mentions[0]) return message.channel.createMessage({
-            embed: Error('Provide an identifier.'),
+            embed: Error('Provide who you want to give an invite (id / everyone)'),
         });
         try {
             if (args[0] === 'everyone') {
+                if (!this.client.owners.includes(message.author.id)) return;
                 await this.client.api.invWave(parseInt(args[1]));
                 await message.channel.createMessage({
-                    embed: Success('Invite wave sent out.'),
+                    embed: Success(`Gave all users ${args[1]} invites.`),
                 });
             } else {
                 await this.client.api.giveinv(message.mentions[0] ? message.mentions[0] .id : args[0], parseInt(args[1]));
@@ -33,7 +33,7 @@ export default class AddinviteCommand extends BaseCommand {
                 });
             }
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }

@@ -14,7 +14,7 @@ export default class BlacklistCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, args: Array<string>) {
         if (!args[0]) return message.channel.createMessage({
-            embed: Error('Provide an identifier.'),
+            embed: Error('Provide who you\'d like to blacklist (<uuid/username/email/invite/key/discord>)'),
         });
 
         try {

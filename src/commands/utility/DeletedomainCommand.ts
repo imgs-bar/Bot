@@ -14,7 +14,7 @@ export default class DeletedomainCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, args: Array<string>) {
         if (!args[0]) return message.channel.createMessage({
-            embed: Error('Please specify an argument!\n`deldomain domain`'),
+            embed: Error('Please provide a domain to delete.'),
         });
 
         try {

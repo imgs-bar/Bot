@@ -22,11 +22,11 @@ export default class SetMotdCommand extends BaseCommand {
         try {
             const motd = args.join(' ');
             await this.client.api.setMotd(motd);
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Success('Set MOTD successfully.'),
             });
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }

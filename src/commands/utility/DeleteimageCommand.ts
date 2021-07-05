@@ -14,7 +14,7 @@ export default class DeletedomainCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, args: Array<string>) {
         if (!args[0]) return message.channel.createMessage({
-            embed: Error('Please specify an argument!\n`delimage filename`'),
+            embed: Error('Please provide an image to delete.'),
         });
 
         try {

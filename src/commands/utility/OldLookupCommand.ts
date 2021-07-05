@@ -47,7 +47,7 @@ export default class LookupCommand extends BaseCommand {
                 });
             }
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }

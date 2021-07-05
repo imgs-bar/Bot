@@ -18,7 +18,7 @@ export default class GeninvCommand extends BaseCommand {
                 const dms = await message.mentions[0].getDMChannel();
                 const { code, link } = await this.client.api.generateInvite(message.author.id);
                 const embed = new Embed()
-                    .setTitle('Here is your invite')
+                    .setTitle('imgs.bar invite')
                     .addFields([
                         {
                             name: 'Direct Link',
@@ -26,7 +26,7 @@ export default class GeninvCommand extends BaseCommand {
                         },
                         {
                             name: 'Code',
-                            value: `||\`${code}\`||`,
+                            value: `\`\`\`${code}\`\`\``,
                         },
                     ]);
 
@@ -52,7 +52,7 @@ export default class GeninvCommand extends BaseCommand {
                         },
                         {
                             name: 'Code',
-                            value: `||\`${code}\`||`,
+                            value: `\`\`\`${code}\`\`\``,
                         },
                     ]);
 

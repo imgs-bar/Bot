@@ -113,8 +113,9 @@ class Embed {
  * @param {string} message The message, defaults to "Something went wrong, please try again."
  * @return {{ description: string, color: number }} The preset embed.
  */
-function Error(message: string = 'Something went wrong, please try again.'): { description: string, color: number } {
+function Error(message: string = 'Something went wrong, please try again.'): { title: string, description: string, color: number } {
     return {
+        title: 'Something went wrong.',
         description: message,
         color: colors.error,
     };

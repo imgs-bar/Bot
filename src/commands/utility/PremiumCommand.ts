@@ -17,11 +17,21 @@ export default class LookupCommand extends BaseCommand {
             embed: Error('Provide a identifier.'),
         });
         try {
-            await this.client.api.premium(message.mentions[0] ? message.mentions[0] .id : args[0]);
+            const { users } = await this.client.api.getUsers(message.mentions[0] ? message.mentions[0].id : args[0]);
 
-            await message.channel.createMessage({
-                embed: Success('Gave user premium.'),
-            });
+            if(users.size > 0){
+                await this.client.api.premium(message.mentions[0] ? message.mentions[0] .id : args[0]);
+
+                await message.channel.createMessage({
+                    embed: Success(`${users[0].premium ? 'Gave user' : 'Removed user'} premium.`),
+                });
+            }
+            else{
+                await message.channel.createMessage({
+                    embed: Error('User not found'),
+                });
+            }
+
         } catch (err) {
             await message.channel.createMessage({
                 embed: Error(err.message),

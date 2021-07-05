@@ -14,16 +14,17 @@ export default class AddinviteCommand extends BaseCommand {
 
     async run(message: Message<TextChannel>, args: Array<string>) {
         if (!args[0] && !message.mentions[0]) return message.channel.createMessage({
-            embed: Error('Provide an identifier.'),
+            embed: Error('Provide someone to set an uid of.'),
         });
 
         try {
             await this.client.api.setuid(message.mentions[0] ? message.mentions[0] .id : args[0], parseInt(args[1]));
+
             await message.channel.createMessage({
                 embed: Success('Set uid successfully'),
             });
         } catch (err) {
-            message.channel.createMessage({
+            await message.channel.createMessage({
                 embed: Error(err.message),
             });
         }
