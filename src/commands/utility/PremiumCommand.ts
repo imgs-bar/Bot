@@ -19,7 +19,7 @@ export default class LookupCommand extends BaseCommand {
         try {
             const { users } = await this.client.api.getUsers(message.mentions[0] ? message.mentions[0].id : args[0]);
 
-            if(users.size > 0){
+            if(users.length > 0){
                 await this.client.api.premium(message.mentions[0] ? message.mentions[0] .id : args[0]);
 
                 await message.channel.createMessage({

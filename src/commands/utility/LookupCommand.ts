@@ -18,7 +18,7 @@ export default class LookupCommand extends BaseCommand {
         });
         try {
             const { users } = await this.client.api.getUsers(message.mentions[0] ? message.mentions[0].id : args[0]);
-            if(users.size > 0){
+            if(users.length > 0){
                 for (const user of users) {
                     const embed = new Embed()
                         .setDescription(`UID ${user.uid} | [${user.username}](https://imgs.bar/u/${user.uid}) (${user.blacklisted.status ? "Blacklisted" : (this.client.owners.includes(user.discord.id) ? "Owner" : (user.admin ? 'Admin' : (user.premium ? 'Premium' : 'Whitelisted')))}) | <@${user.discord.id}>`)
